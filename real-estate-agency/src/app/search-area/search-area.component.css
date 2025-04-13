@@ -1,0 +1,81 @@
+.search-area {
+    height: 600px;
+    background-image: url('src/assets/building.jpg');
+    background-size: cover;
+    background-position: start;/*center*/
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 10px  rgba(0,0,0,0.3);
+  }
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* darken background image */
+    padding: 50px;
+    border-radius: 8px;
+    text-align: center;
+    color: #fff;
+    }
+
+.search-input {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-size: 16px;
+    }
+
+.search-button {
+    margin-top: 15px;
+    padding: 12px 30px;
+    background-color: #0fc689;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    }
+
+.search-button:hover {
+    background-color: #0d9e6c;
+    }
+
+
+/* Options design */
+.search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    }
+
+.search-options {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    }
+
+.search-select {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    min-width: 160px;
+    background-color: #fff;
+    outline: none;
+    transition: border-color 0.3s ease;
+    }
+
+.search-select:focus {
+    border-color: #0fc689;
+    box-shadow: 0 0 4px rgba(15, 198, 137, 0.5);
+    }
+.search-select option {
+    background-color: #fff;
+    color: #333;
+    }

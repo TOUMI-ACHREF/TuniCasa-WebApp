@@ -1,0 +1,15 @@
+
+<nav class="navbar">
+    <div class="nav-left">
+        <img src="assets/Tunicasa_logo.png" alt="Logo" class="logo">
+    </div>
+    <div class="nav-right">
+        <ul class="nav-menu">
+        <li><a href="/home" [class.selectedField]="selected === 'home'">Acceuil</a></li>
+        <li><a href="/estates" [class.selectedField]="selected === 'estates'">Nos Immobiliere</a></li>
+        <li><a href="/favorites" [class.selectedField]="selected === 'favorites'">Favorites</a></li>
+        <li><a (click)="scrollToSection()" [class.selectedField]="selected === 'contacts'">Contacts</a></li>
+        <li><a href="/account" [class.selectedField]="selected === 'account'">Account</a></li>
+        </ul>
+    </div>
+</nav>

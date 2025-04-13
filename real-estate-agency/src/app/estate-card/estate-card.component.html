@@ -1,0 +1,20 @@
+<a [routerLink]="['/estate', estate.id]">
+  <div class="estate-card">
+    <div class="image-container">
+      <img [src]="estate.imageUrl" alt="Estate Image" class="estate-image" />
+
+      <!-- Status Badge -->
+      <div class="status-badge" [ngClass]="estate.status">
+        <span class="puce"></span>
+        {{ estate.status === 'FOR_SALE' ? 'Vente' : 'Location' }}
+      </div>
+    </div>
+
+    <div class="estate-content">
+      <h3 class="estate-title">{{ estate.name }}</h3>
+      <p class="estate-location">{{ estate.city }}</p>
+      <p class="estate-price">{{ estate.price }} TND</p>
+    </div>
+  </div>
+</a>
+  

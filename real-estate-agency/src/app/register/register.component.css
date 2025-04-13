@@ -1,0 +1,57 @@
+
+
+/* Center register card */
+.register-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+}
+.cover-page{
+    background-image: url('src/assets/buildings.jpg');
+    background-size: cover;
+    background-position: start;/*center*/
+}
+.register-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    background-color: #1d634c;/*4a4f54*/
+    border-radius: 10px;
+}
+
+/* Header Styling */
+.register-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-register label, input, small {
+    color: white;
+}
+
+.register-header h2 {
+    font-weight: bold;
+    color: white;
+}
+
+/* Style pour la div contenant le logo */
+.logo-container {
+    width: 100%;               /* Largeur de la div */
+    height: 100px;             /* Hauteur de la div */
+    display: flex;             /* Utilisation de Flexbox */
+    justify-content: center;   /* Centrer le logo horizontalement */
+    align-items: center;       /* Centrer le logo verticalement */
+    background-color: transparent; /* Optionnel : un fond pour la div */
+  }
+  
+  /* Style pour l'image du logo */
+.logo {
+    max-width: 150px;         
+    max-height: 100px;        
+    height: auto;             
+    width: auto;              
+  }
+  

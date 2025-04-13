@@ -1,0 +1,46 @@
+.account-info-container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  
+  .account-info-container h2 {
+    text-align: center;
+    color: #0fc689;
+    margin-bottom: 30px;
+  }
+  
+  .account-details p {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #444;
+  }
+  
+  .account-details p strong {
+    color: #0fc689;
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .estate-image {
+    width: 150px;           /* Ajustez la taille selon vos besoins */
+    height: 150px;          /* Gardez une taille fixe pour l'image */
+    object-fit: cover;      /* Permet à l'image de couvrir complètement le cadre sans déformation */
+    border-radius: 50%;     /* Bordure arrondie pour créer une image circulaire */
+    border: 5px solid #ddd; /* Bordure légère autour de l'image */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère autour de l'image */
+    transition: transform 0.3s ease-in-out; /* Transition pour un effet de zoom lorsqu'on passe la souris dessus */
+  }
+  
+  .estate-image:hover {
+    transform: scale(1.05); 
+  }

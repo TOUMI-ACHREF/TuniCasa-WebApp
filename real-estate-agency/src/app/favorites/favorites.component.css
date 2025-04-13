@@ -1,0 +1,38 @@
+.suggested-estates {
+    padding: 30px;
+    }
+
+.suggested-estates h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    }
+
+.estates-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-items: center;
+    border-left: 3px solid #0fc689;
+    }
+
+
+    @media (max-width: 1200px) {
+        .estates-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .estates-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      
+      @media (max-width: 500px) {
+        .estates-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      

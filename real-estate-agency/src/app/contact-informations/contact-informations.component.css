@@ -1,0 +1,26 @@
+.account-info-container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  
+  .account-info-container h2 {
+    text-align: center;
+    color: #0fc689;
+    margin-bottom: 30px;
+  }
+  
+  .account-details p {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #444;
+  }
+  
+  .account-details p strong {
+    color: #0fc689;
+  }
+  
