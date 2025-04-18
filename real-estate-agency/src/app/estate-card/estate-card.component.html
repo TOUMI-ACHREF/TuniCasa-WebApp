@@ -1,8 +1,10 @@
 <a [routerLink]="['/estate', estate.id]">
   <div class="estate-card">
     <div class="image-container">
-      <img [src]="estate.imageUrl" alt="Estate Image" class="estate-image" />
+      <!-- <img [src]="estate.imageUrl" alt="Estate Image" class="estate-image" /> -->
 
+      <img [src]="estate.imageUrl!= null?'http://localhost:8087/api/storage/files/'+estate.imageUrl:'../../assets/building.jpg'"
+       alt="Estate Image" class="estate-image"/>
       <!-- Status Badge -->
       <div class="status-badge" [ngClass]="estate.status">
         <span class="puce"></span>

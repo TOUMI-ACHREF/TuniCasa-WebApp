@@ -1,6 +1,7 @@
 package com.fsb.tunicasa_api.dao.entities;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -84,6 +85,18 @@ public class Estate {
     @Column(nullable = false)
     private String contactPhone;
 
+     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Estate)) return false;
+        Estate estate = (Estate) o;
+        return Objects.equals(id, estate.id); // compare par id
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
     /*
      @ElementCollection(fetch= FetchType.EAGER)

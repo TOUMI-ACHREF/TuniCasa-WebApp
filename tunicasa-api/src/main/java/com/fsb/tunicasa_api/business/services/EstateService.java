@@ -12,4 +12,8 @@ public interface EstateService {
     public Estate updateEstate(Long id,Estate estate);
     public void deleteEstate(Long id);
     public void clearEstates();
+    public List<Estate> filterEstates(String status, String type, String rooms, String city, String priceMin, String priceMax);
+    public List<Estate> searchEstates(String keyword);
+    //for the upload of images
+    public Estate updateEstateImage(Long id,String filename);
 }

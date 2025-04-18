@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Estate } from '../models/estate.model';
 import { EstateService } from '../services/estates.service';
 
@@ -8,8 +8,7 @@ import { EstateService } from '../services/estates.service';
   styleUrls: ['./estates-sugg.component.css']
 })
 export class EstatesSuggComponent {
-
-  estates: Estate[] = []
+  @Input() estates: Estate[] = [];
 
   constructor(private estateService: EstateService) {}
 
@@ -19,4 +18,6 @@ export class EstatesSuggComponent {
           console.log(this.estates);
         });
   }
+
+
 }

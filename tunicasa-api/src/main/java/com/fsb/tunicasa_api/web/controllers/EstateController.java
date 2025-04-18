@@ -8,6 +8,8 @@ import com.fsb.tunicasa_api.web.dto.EstateDTO;
 import com.fsb.tunicasa_api.web.dto.EstateSummaryDTO;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 @CrossOrigin(origins = "http://localhost:4200") //acces par l'application Angular
 @RequestMapping("/api/estates")
 public class EstateController {
+    
     private final EstateService estateService;
 
     public EstateController(EstateService estateService) {
@@ -51,6 +54,24 @@ public class EstateController {
     public ResponseEntity<List<Estate>> getSuggestedEstates() {
         return ResponseEntity.ok(estateService.getSuggestedEstates());
     }
+
+    @GetMapping("/filter")
+    public ResponseEntity<List<Estate>> filterEstates(
+            @RequestParam(required = false) String status,
+            @RequestParam(required = false) String type,
+            @RequestParam(required = false) String rooms,
+            @RequestParam(required = false) String priceMin,
+            @RequestParam(required = false) String priceMax,
+            @RequestParam(required = false) String city) {
+        return ResponseEntity.ok(estateService.filterEstates(status, type, rooms, city, priceMin, priceMax));
+    }
+
+    @GetMapping("/search")
+    public List<Estate> search(@RequestParam String keyword) {
+        return estateService.searchEstates(keyword);
+    }
+
+
 
     @PostMapping()
     public ResponseEntity<?> addEstate(@RequestBody EstateDTO estateDTO) {

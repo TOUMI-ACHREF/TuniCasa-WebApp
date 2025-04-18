@@ -8,11 +8,14 @@ import { EstateService } from '../services/estates.service';
   styleUrls: ['./estates.component.css']
 })
 export class EstatesComponent {
+  showFilters: boolean = false;
   filters = {
+    status: '',
     type: '',
-    price: null,
-    location: '',
-    bedrooms: ''
+    priceMax: '',
+    priceMin: '',
+    city: '',
+    rooms: ''
   };
   estates: Estate[] = []
   /*
@@ -41,4 +44,16 @@ export class EstatesComponent {
     });
   }
     
+  applyFilters(filters: any) {
+    this.estateService.getFilteredEstates(filters).subscribe((data: Estate[]) => {
+      this.estates = data;
+      console.log(this.estates);
+    });
+  }
+
+  
+
+  toggleFilters() {
+    this.showFilters = !this.showFilters;
+  }
 }

@@ -1,43 +1,66 @@
 <div class="filter-container">
-  <h3>Filtrer les propriétés</h3>
+
+  <div class="row">
+    <h3 class="col-9">Options de filtrage</h3>
+    <button (click)="toggleFilters()" class="toggle-button col-1">
+      <span [ngClass]="{ 'arrow-down': showFilters, 'arrow-right': !showFilters }"></span>
+    </button>  
+  </div>
+
+  <div *ngIf="showFilters" class="filters-container">
+    <form form (ngSubmit)="applyFilters(form.value)" #form="ngForm">
+      <div class="filter">
+        <label for="status">Status d'immobilière</label>
+        <select id="status" [(ngModel)]="filters.status" name="status">
+          <option value="">Tous</option>
+          <option value="FOR_RENT">Location</option>
+          <option value="FOR_SALE">Vente</option>
+          
+        </select>
+      </div>
+      <div class="filter">
+        <label for="type">Type de propriété</label>
+        <select id="type" [(ngModel)]="filters.type" name="type">
+          <option value="">Tous</option>
+          <option value="Appartement">Appartement</option>
+          <option value="Maison">Maison</option>
+          <option value="Villa">Villa</option>
+          <option value="Bureau">Bureau</option>
+          <option value="Locale_commercial">Locale Commercial</option>
+          <option value="Terrain">Terrain</option>
+        </select>
+      </div>
   
-  <form>
-    <div class="filter">
-      <label for="type">Type de propriété</label>
-      <select id="type" [(ngModel)]="filters.type" name="type">
-        <option value="">Tous</option>
-        <option value="appartement">Appartement</option>
-        <option value="maison">Maison</option>
-        <option value="villa">Villa</option>
-        <option value="bureau">Bureau</option>
-        <option value="locale_commercial">Locale Commercial</option>
-        <option value="terrain">Terrain</option>
-      </select>
-    </div>
-
-    <div class="filter">
-      <label for="price">Prix</label>
-      <input id="price" [(ngModel)]="filters.price" name="price" type="number" placeholder="Prix max" />
-    </div>
-
-    <div class="filter">
-      <label for="location">Emplacement</label>
-      <input id="location" [(ngModel)]="filters.location" name="location" type="text" placeholder="Ville, quartier, etc." />
-    </div>
-
-    <div class="filter">
-      <label for="bedrooms">Chambres</label>
-      <select id="bedrooms" [(ngModel)]="filters.bedrooms" name="bedrooms">
-        <option value="">Tous</option>
-        <option value="1">1 Chambre</option>
-        <option value="2">2 Chambres</option>
-        <option value="3">3 Chambres</option>
-        <option value="4">4 Chambres</option>
-      </select>
-    </div>
-
-    <button type="submit">Appliquer les filtres</button>
-  </form>
+      <div class="filter">
+        <label for="priceMax">Prix maximum</label>
+        <input id="priceMax" [(ngModel)]="filters.priceMax" name="priceMax" type="number" placeholder="Prix max" />
+      </div>
+  
+      <div class="filter">
+        <label for="priceMin">Prix minimum</label>
+        <input id="priceMin" [(ngModel)]="filters.priceMin" name="priceMin" type="number" placeholder="Prix min" />
+      </div>
+  
+      <div class="filter">
+        <label for="city">Emplacement</label>
+        <input id="city" [(ngModel)]="filters.city" name="city" type="text" placeholder="Ville..." />
+      </div>
+  
+      <div class="filter">
+        <label for="rooms">Chambres</label>
+        <select id="rooms" [(ngModel)]="filters.rooms" name="rooms">
+          <option value="">Tous</option>
+          <option value="1">1 Chambre</option>
+          <option value="2">2 Chambres</option>
+          <option value="3">3 Chambres</option>
+          <option value="4">4 Chambres</option>
+        </select>
+      </div>
+  
+      <button type="submit">Appliquer les filtres</button>
+    </form>
+  </div>
+  
 </div>
 <div class="suggested-estates mt-4 mb-5">
     <h2>Nos Immobilière</h2>

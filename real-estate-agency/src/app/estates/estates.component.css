@@ -101,3 +101,29 @@
         color: #666;
       }
       
+
+
+      .toggle-button {
+        cursor: pointer;
+        margin-bottom: 10px;
+        background: none;
+        border: none;
+        font-weight: bold;
+        background-color: #0fc689;
+
+      }
+      
+      .arrow-right::after {
+        content: "▶";
+      }
+      
+      .arrow-down::after {
+        content: "▼";
+      }
+      
+      .filters-container {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-top: 5px;
+      }
+      
