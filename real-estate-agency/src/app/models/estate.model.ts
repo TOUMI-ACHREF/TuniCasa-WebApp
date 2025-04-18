@@ -25,5 +25,8 @@ export interface Estate {
     // Owner
     ownerName: string;
     contactPhone: string;
+
+    
+    
   }
   

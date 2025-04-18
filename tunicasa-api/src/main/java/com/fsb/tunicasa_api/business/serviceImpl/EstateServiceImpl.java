@@ -131,10 +131,10 @@ public class EstateServiceImpl implements EstateService {
                     .filter(rooms != null && rooms != "" ? estate -> estate.getRooms().toString().equals(rooms)
                             : estate -> true)
                     .filter(city != null && city != "" ? estate -> estate.getCity().equals(city) : estate -> true)
-                    .filter(priceMax != null && !priceMax.isEmpty()
+                    .filter(priceMax != null && priceMax!=""
                             ? estate -> estate.getPrice() <= Double.parseDouble(priceMax.trim())
                             : estate -> true)
-                    .filter(priceMin != null && !priceMin.isEmpty()
+                    .filter(priceMin != null && priceMin!=""
                             ? estate -> estate.getPrice() >= Double.parseDouble(priceMin.trim())
                             : estate -> true)
                     .toList();

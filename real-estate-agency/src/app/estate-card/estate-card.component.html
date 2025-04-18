@@ -1,5 +1,9 @@
 <a [routerLink]="['/estate', estate.id]">
   <div class="estate-card">
+    <div class="bookmark-icon" (click)="toggleBookmark($event, estate)">
+      <i [class]="bookmarked ? 'fas fa-bookmark' : 'far fa-bookmark'"></i>
+    </div>
+    
     <div class="image-container">
       <!-- <img [src]="estate.imageUrl" alt="Estate Image" class="estate-image" /> -->
 

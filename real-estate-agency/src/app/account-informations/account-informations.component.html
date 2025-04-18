@@ -1,18 +1,55 @@
 <div class="account-info-container" id="contact">
-    <h2>Your Account Information</h2>
+    <h2>Les informations de votre compte</h2>
     <div class="row">
       <div class="account-details col">
-        <p><strong>Full Name:</strong> {{ fullName }}</p>
-        <p><strong>Email:</strong> {{ email }}</p>
-        <p><strong>Phone:</strong> {{phone}}</p>
-        <p><strong>Address:</strong> {{address}}</p>
-        <p><strong>Member Since:</strong> {{createdIn}}</p>
+        <p><strong>Nom et Prénom: </strong> {{ fullName }}</p>
+        <p><strong>Email: </strong> {{ email }}</p>
+        <p><strong>téléphone: </strong> {{phone}}</p>
+        <p><strong>Adresse: </strong> {{address}}</p>
+        <p><strong>Member depuit: </strong> {{createdIn}}</p>
       </div>
-      <div class="col image-container">
-        <img [src]= "imageUrl" alt="Estate image" class="estate-image" />
+      <div class="col-4 image-container">
+        <img [src]= "imageUrl" alt="image" class="estate-image" />
       </div>
       
     </div>
+    <div class="mt-5 justify-content-center d-flex">
+      <button (click)="show = !show" class="btn btn-primary mr-3">Edit Account</button>
+      <button class="btn btn-danger">Delete Account</button>
+    </div>
+</div>
+
+<div *ngIf="show" class="account-info-container hidden" >
+  <h2>Modifier les information de votre compte</h2>
     
-  </div>
-  
+      <div class="account-details">
+        <div class="row">
+          <p class="col-4"><strong>Nom et Prénom: </strong></p>
+          <input type="text" [(ngModel)]="fullName" class="form-control ml-2 col" placeholder="Tapez un nouveau Nom..." />
+        </div>
+
+        <div class="row">
+          <p class="col-4"><strong>Email: </strong></p>
+          <input type="text" [(ngModel)]="email" class="form-control ml-2 col" placeholder="Tapez un nouveau Email..." />
+        </div>
+
+        <div class="row">
+          <p class="col-4"><strong>Télephone: </strong></p>
+          <input type="text" [(ngModel)]="phone" class="form-control ml-2 col" placeholder="Tapez un nouveau numéro de Téléphone..." />
+        </div>
+
+        <div class="row">
+          <p class="col-4"><strong>Adresse: </strong></p>
+          <input type="text" [(ngModel)]="address" class="form-control ml-2 col" placeholder="Tapez une nouvelle Adresse..." />
+        </div>
+
+        
+      </div>
+      
+   
+    <div class="mt-5 justify-content-center d-flex">
+      <button class="btn btn-warning mr-3">Confirmer les modifications</button>
+      <button (click)="show = !show" class="btn btn-danger ml-3">Annuler</button>
+
+    </div>
+</div>

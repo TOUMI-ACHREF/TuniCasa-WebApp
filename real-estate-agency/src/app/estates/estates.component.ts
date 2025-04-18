@@ -45,6 +45,12 @@ export class EstatesComponent {
   }
     
   applyFilters(filters: any) {
+    if (filters.priceMax === null) {
+      filters.priceMax = '';
+    }
+    if (filters.priceMin === null) {
+      filters.priceMin = '';
+    }
     this.estateService.getFilteredEstates(filters).subscribe((data: Estate[]) => {
       this.estates = data;
       console.log(this.estates);

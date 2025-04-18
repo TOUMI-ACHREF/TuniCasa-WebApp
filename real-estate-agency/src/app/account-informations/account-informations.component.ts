@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./account-informations.component.css']
 })
 export class AccountInformationsComponent {
+  show:boolean = false;
   fullName: string = 'TOUMI ACHREF';
   email: string = "toumiachref52@gmail.com";
   phone: any = 25509768;

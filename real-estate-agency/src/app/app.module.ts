@@ -17,8 +17,6 @@ import { FormsModule } from '@angular/forms';
 import { EstatesPageComponent } from './estates-page/estates-page.component';
 import { EstatesComponent } from './estates/estates.component';
 import { EstatesInformationComponent } from './estates-information/estates-information.component';
-import { ContactPageComponent } from './contact-page/contact-page.component';
-import { ContactInformationsComponent } from './contact-informations/contact-informations.component';
 import { AccountInformationsComponent } from './account-informations/account-informations.component';
 import { AccountPageComponent } from './account-page/account-page.component';
 import { FavoritesComponent } from './favorites/favorites.component';
@@ -38,8 +36,6 @@ import { FavoritesPageComponent } from './favorites-page/favorites-page.componen
     EstatesPageComponent,
     EstatesComponent,
     EstatesInformationComponent,
-    ContactPageComponent,
-    ContactInformationsComponent,
     AccountInformationsComponent,
     AccountPageComponent,
     FavoritesComponent,
