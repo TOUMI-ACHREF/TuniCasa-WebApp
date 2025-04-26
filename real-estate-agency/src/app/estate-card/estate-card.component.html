@@ -1,0 +1,26 @@
+<a [routerLink]="['/estate', estate.id]">
+  <div class="estate-card">
+    <div class="bookmark-icon" (click)="toggleBookmark($event, estate)">
+      <i [class]="bookmarked ? 'fas fa-bookmark' : 'far fa-bookmark'"></i>
+    </div>
+    
+    <div class="image-container">
+      <!-- <img [src]="estate.imageUrl" alt="Estate Image" class="estate-image" /> -->
+
+      <img [src]="estate.imageUrl!= null?'http://localhost:8087/api/storage/files/'+estate.imageUrl:'../../assets/building.jpg'"
+       alt="Estate Image" class="estate-image"/>
+      <!-- Status Badge -->
+      <div class="status-badge" [ngClass]="estate.status">
+        <span class="puce"></span>
+        {{ estate.status === 'FOR_SALE' ? 'Vente' : 'Location' }}
+      </div>
+    </div>
+
+    <div class="estate-content">
+      <h3 class="estate-title">{{ estate.name }}</h3>
+      <p class="estate-location">{{ estate.city }}</p>
+      <p class="estate-price">{{ estate.price }} TND</p>
+    </div>
+  </div>
+</a>
+  

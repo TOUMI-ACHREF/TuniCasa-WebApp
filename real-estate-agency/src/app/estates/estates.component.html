@@ -1,0 +1,81 @@
+<div class="filter-container">
+
+  <div class="row">
+    <h3 class="col-9">Options de filtrage</h3>
+    <button (click)="toggleFilters()" class="toggle-button col-1">
+      <span [ngClass]="{ 'arrow-down': showFilters, 'arrow-right': !showFilters }"></span>
+    </button>  
+  </div>
+
+  <div *ngIf="showFilters" class="filters-container">
+    <form form (ngSubmit)="applyFilters(form.value)" #form="ngForm">
+      <div class="row">
+        <div class="filter col">
+          <label for="status">Status d'immobilière</label>
+          <select id="status" [(ngModel)]="filters.status" name="status">
+            <option value="">Tous</option>
+            <option value="FOR_RENT">Location</option>
+            <option value="FOR_SALE">Vente</option>
+          </select>
+        </div>
+        <div class="filter col">
+          <label for="type">Type de propriété</label>
+          <select id="type" [(ngModel)]="filters.type" name="type">
+            <option value="">Tous</option>
+            <option value="Appartement">Appartement</option>
+            <option value="Maison">Maison</option>
+            <option value="Villa">Villa</option>
+            <option value="Bureau">Bureau</option>
+            <option value="Locale_commercial">Locale Commercial</option>
+            <option value="Terrain">Terrain</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="filter col">
+          <label for="city">Emplacement</label>
+          <input id="city" [(ngModel)]="filters.city" name="city" type="text" placeholder="Ville..." />
+        </div>
+    
+        <div class="filter col">
+          <label for="rooms">Chambres</label>
+          <select id="rooms" [(ngModel)]="filters.rooms" name="rooms">
+            <option value="">Tous</option>
+            <option value="1">1 Chambre</option>
+            <option value="2">2 Chambres</option>
+            <option value="3">3 Chambres</option>
+            <option value="4">4 Chambres</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="filter col">
+          <label for="priceMin">Prix minimum</label>
+          <input id="priceMin" [(ngModel)]="filters.priceMin" name="priceMin" type="number" placeholder="Prix min" />
+        </div>
+
+        <div class="filter col">
+          <label for="priceMax">Prix maximum</label>
+          <input id="priceMax" [(ngModel)]="filters.priceMax" name="priceMax" type="number" placeholder="Prix max" />
+        </div>
+      </div>
+      
+      
+      
+  
+      <button  type="submit">Appliquer les filtres</button>
+    </form>
+  </div>
+  
+</div>
+<div class="suggested-estates mt-4 mb-5">
+    <h2>Nos Immobilière</h2>
+    <div class="estates-grid">
+      <!--<app-estate-card *ngFor="let estate of estates" [estate]="estate" [bookmarked]="" [user]=""></app-estate-card>-->
+      <app-estate-card *ngFor="let estate of estates" [estate]="estate" [bookmarked]="isFavorite(estate)"  [user]="user"
+      (bookmarkChanged)="handleBookmarkChange($event.estate, $event.isBookmarked)"></app-estate-card>
+    
+    </div>
+</div>

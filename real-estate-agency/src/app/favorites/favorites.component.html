@@ -1,0 +1,7 @@
+<div class="suggested-estates mt-4 mb-5">
+    <h2>Favorites</h2>
+    <div class="estates-grid">
+      <app-estate-card *ngFor="let fav of favorites" [estate]="fav" [bookmarked]="true" [user]="user" 
+      (bookmarkChanged)="handleBookmarkChange($event.estate, $event.isBookmarked)"></app-estate-card>
+    </div>
+</div>

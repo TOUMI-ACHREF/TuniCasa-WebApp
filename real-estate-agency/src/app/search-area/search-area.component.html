@@ -1,0 +1,9 @@
+<div class="search-area">
+    <div class="overlay">
+        <h1 class="search-title mt-2 mb-4">Trouvez votre bien immobilier</h1>
+        <form class="search-form " (click)="onSearch()">
+            <input type="text" placeholder="Rechercher un bien immobilier" class="search-input" [(ngModel)]="searchTerm" name="search">
+            <button type="submit" class="search-button">Rechercher</button>
+        </form>
+    </div>
+</div>

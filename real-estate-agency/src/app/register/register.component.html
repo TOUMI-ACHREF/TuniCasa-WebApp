@@ -1,0 +1,90 @@
+<div class="cover-page container-fluid justify-content-center align-items-center vh-100">
+  <div class="row justify-content-center align-items-center vh-100">
+    <div class="col cover-card">
+    </div>
+    <!-- Register Container -->
+    <div class="col register-card">
+      <!-- Register Header -->
+      <div class="register-header">
+        <h2 class="header">S'inscrire</h2>
+      </div>
+      <!-- Register Form -->
+      <form [formGroup]="registerForm" (ngSubmit)="register()" class="form-register" id="registerForm">
+        <div class="row">
+          <div class="col mb-3">
+            <div class="form-group">
+              <label for="firstname">Prénom</label>
+              <input type="text" formControlName="firstname" id="firstname" class="form-control" style="color: black; background-color: white;">
+              <div class="text-danger" *ngIf="registerForm.get('firstname')?.touched && registerForm.get('firstname')?.invalid">
+                <small class="text-danger" *ngIf="registerForm.get('firstname')?.hasError('required')">Prénom est obligatoire*</small>
+              </div>
+            </div>
+          </div>
+          <div class="col form-group">
+            <label for="lastname">Nom</label>
+            <input type="text" formControlName="lastname" id="lastname" class="form-control" style="color: black; background-color: white;">
+            <div class="text text-danger" *ngIf="registerForm.get('lastname')?.touched && registerForm.get('lastname')?.invalid">
+              <small class="text-danger" *ngIf="registerForm.get('lastname')?.hasError('required')">Nom est Obligatoire*</small>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" formControlName="email" id="email" class="form-control" style="color: black; background-color: white;">
+          <div class="text-danger" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+            <small class="text-danger" *ngIf="registerForm.get('email')?.hasError('required')">Email Obligatoire*</small>
+            <small class="text-danger" *ngIf="registerForm.get('email')?.hasError('email')">Email invalide</small>
+          </div>
+        </div>
+
+        <div class="row"> 
+          <div class="col form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" formControlName="password" id="password" class="form-control" style="color: black; background-color: white;">
+            <div class="text-danger" *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+              <small class="text-danger" *ngIf="registerForm.get('password')?.hasError('required')">Mot de passe est obligatoire*</small>
+              <small class="text-danger" *ngIf="registerForm.get('password')?.hasError('minlength')">Mot de passe doit contenir au moin 8 caractères</small>
+            </div>
+          </div>
+          <div class="col form-group">
+            <label for="confirmPassword">Confirmer Mot de passe</label>
+            <input type="password" formControlName="confirmPassword" id="confirmPassword" class="form-control" style="color: black; background-color: white;">
+            <div class="text-danger" *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid">
+              <small class="text-danger" *ngIf="registerForm.get('confirmPassword')?.hasError('required')">Confirmation de mot de passe est obligatoire*</small>
+              <small  class="text-danger" *ngIf="registerForm.hasError('matching')">Confirmation invalide</small>
+            </div>
+          </div>
+          
+        </div>
+
+        <div class="form-group">
+          <label for="role">Role</label><br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" formControlName="role" id="roleUser" value="USER">
+            <label class="form-check-label" for="roleUser">User</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" formControlName="role" id="roleAdmin" value="ADMIN">
+            <label class="form-check-label" for="roleAdmin">Admin</label>
+          </div>
+          <div class="text-danger" *ngIf="registerForm.get('role')?.touched && registerForm.get('role')?.invalid">
+            <small *ngIf="registerForm.get('role')?.hasError('required')">Role is required</small>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">
+          <span *ngIf="!isLoading">Register</span>
+          <span *ngIf="isLoading" class="spinner-border spinner-border sm" role="status" aria-hidden="true"></span>
+          <span *ngIf="isLoading" class="sr-only">Loading...</span>
+        </button>
+      </form>
+      
+      <!-- Footer Links -->
+      <div class="text-center mt-3">
+        <small>
+          Vous avez déja un compte? <a href="/login" class="text-primary">Se connecter</a>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+export enum EstateStatus {
+    FOR_SALE = 'FOR_SALE',
+    FOR_RENT = 'FOR_RENT',
+    SOLD = 'SOLD',
+    RENTED = 'RENTED',
+    RESERVED = 'RESERVED',
+    EXPIRED = 'EXPIRED',
+    PENDING = 'PENDING',
+    UNDER_CONTRACT = 'UNDER_CONTRACT',
+    WITHDRAWN = 'WITHDRAWN',
+    CANCELLED = 'CANCELLED',
+    UNKNOWN = 'UNKNOWN',
+  }
+  
