@@ -8,4 +8,4 @@ import com.fsb.tunicasa_api.dao.entities.User;
  
 public interface UserRepository extends JpaRepository<User, Long> { 
     Optional<User> findByEmail(String email); 
-  } 
+} 

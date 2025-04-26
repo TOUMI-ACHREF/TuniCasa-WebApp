@@ -73,6 +73,9 @@
 <div class="suggested-estates mt-4 mb-5">
     <h2>Nos Immobilière</h2>
     <div class="estates-grid">
-      <app-estate-card *ngFor="let estate of estates" [estate]="estate"></app-estate-card>
+      <!--<app-estate-card *ngFor="let estate of estates" [estate]="estate" [bookmarked]="" [user]=""></app-estate-card>-->
+      <app-estate-card *ngFor="let estate of estates" [estate]="estate" [bookmarked]="isFavorite(estate)"  [user]="user"
+      (bookmarkChanged)="handleBookmarkChange($event.estate, $event.isBookmarked)"></app-estate-card>
+    
     </div>
 </div>

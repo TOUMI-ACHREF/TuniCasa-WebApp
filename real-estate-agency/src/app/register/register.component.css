@@ -13,7 +13,7 @@
 }
 .register-card {
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     height: 660px;
     padding: 30px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
@@ -31,6 +31,7 @@
     background-size: cover;
     background-position: start;/*center*/
 }
+
 
 /* Header Styling */
 .register-header {

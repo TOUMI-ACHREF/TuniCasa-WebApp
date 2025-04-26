@@ -38,8 +38,8 @@ public class ApplicationSecurityConfig {
     private final UserRepository userRepository;
 
     public ApplicationSecurityConfig(@Value("${jwt.public.key}") RSAPublicKey key,
-            @Value("${jwt.private.key}") RSAPrivateKey priv,
-            UserRepository userRepository) {
+                                    @Value("${jwt.private.key}") RSAPrivateKey priv,
+                                    UserRepository userRepository) {
         this.key = key;
         this.priv = priv;
         this.userRepository = userRepository;

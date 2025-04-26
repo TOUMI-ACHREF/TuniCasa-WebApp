@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FavoriteService } from '../services/favorite.service';
 //import { environment } from '../environments/environment';
 
 @Component({
@@ -10,7 +11,12 @@ export class EstateCardComponent {
   @Input() estate: any;
   
   //to change when the user backend is done
-  bookmarked:boolean = false;
+  @Input()
+  bookmarked!: boolean;
+  @Input() user: any;
+  @Output() bookmarkChanged = new EventEmitter<{ estate: any, isBookmarked: boolean }>(); // Emit both estate and bookmark state
+
+  constructor(private favoriteService: FavoriteService) {}
 
   toggleBookmark(event: Event, estate: any): void {
     event.preventDefault(); // prevent routing when clicking the bookmark
@@ -18,7 +24,10 @@ export class EstateCardComponent {
   
     this.bookmarked = !this.bookmarked;
   
-    // Optional: Send to backend or store locally
-    console.log(`${estate.name} bookmarked:`, this.bookmarked);
+    // Emit the change to the parent
+    this.bookmarkChanged.emit({
+      estate: this.estate,
+      isBookmarked: this.bookmarked
+    });
   }
 }

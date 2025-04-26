@@ -37,7 +37,7 @@ public class SecurityConfiguration {
     // Defines the SecurityFilterChain bean
     @Bean 
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { 
-        http 
+        http .cors(Customizer.withDefaults())//this is temporary, we will use a filter for CORS
             .authorizeHttpRequests((requests) -> requests 
                 // Allows access without authentication to /api/auth/** and /webjars/** endpoints 
                 .requestMatchers("/api/auth/**", "/webjars/**").permitAll() 
@@ -66,8 +66,7 @@ public class SecurityConfiguration {
             .authenticationProvider(authenticationProvider) 
         // Configures HTTP Basic authentication 
             //.httpBasic(Customizer.withDefaults()) 
-            .httpBasic(httpBasic -> 
-httpBasic.authenticationEntryPoint(customAuthenticationEntryPoint)) ;
+            .httpBasic(httpBasic -> httpBasic.authenticationEntryPoint(customAuthenticationEntryPoint)) ;
         // Builds and returns the SecurityFilterChain object 
         return http.build(); 
     }

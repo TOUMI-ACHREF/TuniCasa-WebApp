@@ -74,17 +74,5 @@ public class ExceptionHandlerController {
         return new ResponseEntity<>(errorResponse, HttpStatus.FORBIDDEN);
     }
 
-    @ExceptionHandler(DuplicateUserException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    public ResponseEntity<ErrorResponse> HandleDuplicateUserException(DuplicateUserException e, WebRequest request) {
-        final ErrorResponse errorResponse = ErrorResponse.builder()
-                .timestamp(Instant.now())
-                .error("Duplicate User")
-                .status(HttpStatus.BAD_REQUEST.value())
-                .message(e.getMessage())
-                .path(request.getDescription(false))
-                .build();
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-    }
+    
 }

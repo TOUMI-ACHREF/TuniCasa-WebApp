@@ -27,6 +27,8 @@ public class User implements UserDetails {
     private Long id;
     private String firstname;
     private String lastname;
+    private String phone;
+    private String profileImage;
     
     @Column(unique = true, nullable = false)
     private String email;
