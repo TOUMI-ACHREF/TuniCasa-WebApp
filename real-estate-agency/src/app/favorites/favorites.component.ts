@@ -40,7 +40,8 @@ export class FavoritesComponent implements OnInit{
     }
 
     handleBookmarkChange(estate: any, isBookmarked: boolean): void {
-      if(isBookmarked){
+      // Handle bookmarking action from child (EstateCardComponent)
+      if (!isBookmarked) {
         this.favoriteService.removeFavorite(this.user.id, estate.id).subscribe(
           () => {
             console.log(`Estate ${estate.id} removed from favorites.`);

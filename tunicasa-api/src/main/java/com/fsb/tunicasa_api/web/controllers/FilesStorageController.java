@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,13 +21,14 @@ import com.fsb.tunicasa_api.web.dto.ResponseMessage;
 
 @Controller
 @RequestMapping("/api/storage")
-@CrossOrigin("http://localhost:4200")
 public class FilesStorageController {
     @Autowired
     FilesStorageService storageService;
     @Autowired
     EstateService estateService;
 
+    
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @PatchMapping("/upload/{id}")
     public ResponseEntity<ResponseMessage> uploadFile(@PathVariable Long id,
             @RequestParam("file") MultipartFile file) {
@@ -44,6 +46,7 @@ public class FilesStorageController {
         }
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("/files/{filename:.+}")
     // The ".+" pattern in @PathVariable captures the full filename, including
     // extensions.

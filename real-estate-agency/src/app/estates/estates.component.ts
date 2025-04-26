@@ -56,7 +56,7 @@ export class EstatesComponent {
     });
   }
 
-  loadUserFavorites(): void {
+  /* loadUserFavorites(): void {
     // Optionally load favorites here for initial state (optional if you fetch favorites from the backend)
     this.favoriteService.getFavorites(this.user.id).subscribe(
       (favorites) => {
@@ -67,7 +67,7 @@ export class EstatesComponent {
         console.error('Error loading favorites:', error);
       }
     );
-  }
+  } */
 
   // Method to check if an estate is in the favorites list
   isFavorite(estate: any): boolean {

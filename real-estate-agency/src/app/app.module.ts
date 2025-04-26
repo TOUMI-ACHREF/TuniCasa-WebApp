@@ -52,7 +52,7 @@ import { AdminBoardComponent } from './admin-board/admin-board.component';
     HttpClientModule
   ],
   providers: [
-    { provide: 'BaseURL', useValue: 'http://localhost:8087/api' }  // ✅ your backend base URL
+    { provide: 'BaseURL', useValue: 'http://localhost:8087/api' }  
   ],
   bootstrap: [AppComponent]
 })

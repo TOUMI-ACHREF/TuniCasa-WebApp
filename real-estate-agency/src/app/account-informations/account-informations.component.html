@@ -1,3 +1,6 @@
+<!-- Hidden file input for image upload -->
+<input type="file" accept="image/*" (change)="selectFile($event)" style="display: none;" #fileInput>
+
 <div class="account-info-container" id="contact">
     <h2>Les informations de votre compte</h2>
     <div class="row">
@@ -8,7 +11,7 @@
         <p><strong>téléphone: </strong> {{user.phone}}</p>
       </div>
       <div class="col-4 image-container">
-        <img [src]= "user.imageUrl!= null?'http://localhost:8087/api/storage/files/'+user.imageUrl: '../../assets/user.png'" alt="image" class="estate-image" />
+        <img [src]= "user.imageUrl!= null?'http://localhost:8087/api/storage/files/'+user.imageUrl: '../../assets/user.png'" alt="image" class="estate-image" (click)="triggerFileInput()" />
       </div>
       
     </div>
@@ -16,10 +19,13 @@
       <button (click)="show = !show" class="btn btn-primary mr-3">Modifier</button>
       <button class="btn btn-danger mr-3" (click)="onDelete()">Supprimer le compte</button>
       <button class="btn btn-secondary" (click)="logout()">Se Déconnecter</button>
-      <label class="text text-danger mt-4" [(ngModel)]="errorSupp"></label>
+      <label class="text text-danger mt-4" name="errorSupp">{{errorSupp}}</label>
     </div>
 </div>
+<!-- Display upload status message -->
+<div *ngIf="message" class="text-center">{{ message }}</div>
 
+<!--update-->
 <div *ngIf="show" class="account-info-container hidden" >
   <h2>Modifier les information de votre compte</h2>
     
@@ -49,6 +55,6 @@
     <div class="mt-5 justify-content-center d-flex">
       <button (click)="onUpdate()" class="btn btn-warning mr-3">Confirmer les modifications</button>
       <button (click)="show = !show" class="btn btn-danger ml-3">Annuler</button>
-      <label class="text text-danger mt-4" [(ngModel)]="errorUpdate"></label>
+      <label class="text text-danger mt-4" >{{errorUpdate}}</label>
     </div>
 </div>

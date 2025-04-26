@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { User } from '../models/user.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FileUploadService } from '../services/file-upload.service';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-account-informations',
@@ -32,13 +34,31 @@ export class AccountInformationsComponent {
 
   show:boolean = false;
 
-  constructor(private profileService: ProfileService,private authService: AuthService,private router: Router) {}
+  /* upload file*/ 
+  selectedFiles?: FileList; 
+  currentFile?: File; 
+  progress = 0; 
+  message = ''; 
+
+  /* Reference to the file input element */
+  @ViewChild('fileInput') fileInput!: ElementRef;
+
+  constructor(
+    private profileService: ProfileService,
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private fileUploadService: FileUploadService,
+    @Inject('BaseURL') public baseUrl: string
+  ) {}
 
   ngOnInit() {
     this.profileService.getProfile().subscribe((data: any) => {
       this.user = data;
       console.log(this.user);
     });
+
+    
   }
 
   logout(){
@@ -76,4 +96,48 @@ export class AccountInformationsComponent {
       });
     }
   }
+
+
+  /** Triggers the hidden file input when the image is clicked */
+  triggerFileInput(): void {
+    this.fileInput.nativeElement.click();
+  }
+
+  /** Handles file selection and initiates the upload */
+  selectFile(event: any): void {
+    this.selectedFiles = event.target.files;
+    if (this.selectedFiles && this.selectedFiles[0]) {
+      this.currentFile = this.selectedFiles[0];
+      this.upload();
+    }
+  }
+
+  /** Uploads the selected file using FileUploadService */
+  upload(): void {
+    if (!this.user.id) {
+      this.message = 'User ID not found';
+      return;
+    }
+    if (this.currentFile) {
+      this.fileUploadService.upload(this.currentFile, this.user.id).subscribe({
+        next: (event: any) => {
+          if (event.type === HttpEventType.UploadProgress) {
+            this.progress = Math.round(100 * event.loaded / event.total);
+          } else if (event instanceof HttpResponse) {
+            // Refresh user data after successful upload
+            this.profileService.getProfile().subscribe((data: any) => {
+              this.user = data;
+              this.message = 'Image uploaded successfully';
+            });
+          }
+        },
+        error: (err: any) => {
+          this.message = 'Could not upload the file: ' + err.message;
+          this.currentFile = undefined;
+        }
+      });
+    }
+  }
+
+
 }

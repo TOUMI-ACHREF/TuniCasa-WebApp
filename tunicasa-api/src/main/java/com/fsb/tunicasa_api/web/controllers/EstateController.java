@@ -55,20 +55,33 @@ public class EstateController {
 
     @GetMapping("/suggested")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER') and hasAuthority('READ_PRIVILEGE')") 
-    public ResponseEntity<List<Estate>> getSuggestedEstates() {
-        return ResponseEntity.ok(estateService.getSuggestedEstates());
+    public ResponseEntity<List<EstateDTO>> getSuggestedEstates() {
+        List<Estate> estates = estateService.getSuggestedEstates();
+        List<EstateDTO> estateDTOs = estates.stream()
+                .map(estate -> EstateDTO.toEstateDTO(estate))
+                .collect(Collectors.toList());
+        
+            return ResponseEntity.ok(estateDTOs);
     }
 
     @GetMapping("/filter")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER') and hasAuthority('READ_PRIVILEGE')") 
-    public ResponseEntity<List<Estate>> filterEstates(
+    public ResponseEntity<List<EstateDTO>> filterEstates(
             @RequestParam(required = false) String status,
             @RequestParam(required = false) String type,
             @RequestParam(required = false) String rooms,
             @RequestParam(required = false) String priceMin,
             @RequestParam(required = false) String priceMax,
             @RequestParam(required = false) String city) {
-        return ResponseEntity.ok(estateService.filterEstates(status, type, rooms, city, priceMin, priceMax));
+        //return ResponseEntity.ok(estateService.filterEstates(status, type, rooms, city, priceMin, priceMax));
+            List<Estate> estates = estateService.filterEstates(status, type, rooms, city, priceMin, priceMax);
+
+            List<EstateDTO> estateDTOs = estates.stream()
+                .map(estate -> EstateDTO.toEstateDTO(estate))
+                .collect(Collectors.toList());
+        
+            return ResponseEntity.ok(estateDTOs);
+    
     }
 
     @GetMapping("/search")
