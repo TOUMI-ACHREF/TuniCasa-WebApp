@@ -26,6 +26,9 @@ import { EstateDetailsComponent } from './back-office/estate-details/estate-deta
 import { EstateEditComponent } from './back-office/estate-edit/estate-edit.component';
 import { Estates2Component } from './back-office/estates/estates.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { UsersComponent } from './back-office/users/users.component';
+import { UserDetailsComponent } from './back-office/user-details/user-details.component';
+import { UserEditComponent } from './back-office/user-edit/user-edit.component';
 
 
 @NgModule({
@@ -51,6 +54,9 @@ import { NotfoundComponent } from './notfound/notfound.component';
     EstateEditComponent,
     Estates2Component,
     NotfoundComponent,
+    UsersComponent,
+    UserDetailsComponent,
+    UserEditComponent,
       ],
   imports: [
     CommonModule,

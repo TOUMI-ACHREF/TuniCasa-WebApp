@@ -1,0 +1,54 @@
+
+<button class="btn btn-primary mb-3 mr-2" (click)="onAdduser()">
+    Add User
+</button>
+
+<div class="card border-primary mb-3">
+
+    <div class="card-header bg-primary text-white">
+        Users Component
+    </div>
+
+    <div class="card-body">
+        <div *ngIf="users.length>0; else noUsers">
+            <h3>User List</h3>
+            <table class="table table-hover">
+                <tr>
+                    <th>Name</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let user of users">
+                    <td>{{user.email}}</td>
+                    <td> <a routerLink="/users/{{user.id}}" class="btn btn-success">Detail</a></td>
+                    <td> <a routerLink="/users/edit/{{user.id}}" class="btn btn-warning">Update</a></td>
+                    <td> <button (click)="onDeleteUser(user.id)" class="btn btn-danger">Delete</button></td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div [hidden]="!isWaiting">
+            <div class="spinner-border" role="status">
+            </div>
+            <h4>Looading... please wait!</h4>
+        </div>
+        
+        <ng-template #noUsers>
+            <p class="alert alert-warning">
+                No User found!
+            </p>
+            <div *ngIf="errMsg" class="alert alert-danger">
+                <strong>Error!</strong> {{errMsg}}
+            </div>
+        </ng-template>
+        
+
+    </div>
+
+</div>
+
+<button class="btn btn-primary" (click)="goToHome()">
+    Go to Home
+</button>

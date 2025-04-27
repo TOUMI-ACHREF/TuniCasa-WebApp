@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EstateService } from '../services/estates.service';
 
 @Component({

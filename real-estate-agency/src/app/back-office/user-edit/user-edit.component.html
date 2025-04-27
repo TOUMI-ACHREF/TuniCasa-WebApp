@@ -1,0 +1,86 @@
+<div class="card border-primary mb-3">
+
+    <div class="card-header bg-primary text-white "> Edit User Component</div>
+
+    <div class="card-body">
+        <h3 *ngIf="!user.id; else update">Add User</h3>   
+        <ng-template #update><h3>Update User</h3></ng-template> 
+
+        <form  (ngSubmit)="onSubmit()" #form="ngForm">  
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" 
+                      [ngClass]="{'is-invalid':name.invalid && name.dirty,'is-valid':name.valid}"
+                      required #name="ngModel" [(ngModel)]="user.name">
+                <div *ngIf="name.invalid && name.dirty" class="invalid-feedback">
+                        Please provide a name.
+                </div>     
+            </div>
+
+            <div class="form-group">
+                <label for="name">Last name</label>
+                <input type="text" class="form-control" name="prenom" 
+                      [ngClass]="{'is-invalid':name.invalid && name.dirty,'is-valid':name.valid}"
+                      required #name="ngModel" [(ngModel)]="user.lastname">
+                <div *ngIf="name.invalid && name.dirty" class="invalid-feedback">
+                        Please provide a Lastname.
+                </div>     
+            </div>
+
+            <div class="form-row">
+
+                <div class="col">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" name="email"
+                    [ngClass]="{'is-invalid':email.invalid && email.dirty,'is-valid':email.valid}"
+                     required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                     #email="ngModel"  [(ngModel)]="user.email">
+                     <div *ngIf="email.invalid && email.dirty" class="invalid-feedback">
+                        Please provide a valid email address.
+                     </div>
+                     <div *ngIf="errMail.length!=0" class="error" >
+                        Email already in use
+                    </div>
+                </div>
+
+                
+
+            </div>
+
+            <div class="form-group">
+                <label for="name">Role </label>
+                <input type="text" class="form-control" name="role" 
+                      [ngClass]="{'is-invalid':name.invalid && name.dirty,'is-valid':name.valid}"
+                      required #name="ngModel" [(ngModel)]="user.role">
+                <div *ngIf="name.invalid && name.dirty" class="invalid-feedback">
+                        Please provide a Role.
+                </div>     
+            </div>
+
+            <div class="form-group">
+                <!-- Display the contact's image if the contact has an id (update use case). Use a default avatar if no image is available. -->
+                <img *ngIf="user.id"
+                    [src]="user.image ? baseUrl + user.image : '../../assets/images/user.png'"
+                    class="img-responsive img-rounded" style="max-height: 50px; max-width: 50px;" alt="photo">
+                
+                <!-- File input for selecting a new image, styled as a button. -->
+                <label class="btn btn-success p-0">
+                    <input type="file" (change)="selectFile($event)" [disabled]="isDisabled" />
+                </label>
+                
+               
+                
+                <!-- Display a message if there is one, for example, success or error messages. -->
+                <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid || isLoading ">
+                <span *ngIf="isLoading" class="spinner-border" role="status"> </span> 
+                Save 
+            </button>
+
+        </form>
+    </div>
+</div>
+<button class="btn btn-primary" (click)="onUsers()">Go to Users</button>
