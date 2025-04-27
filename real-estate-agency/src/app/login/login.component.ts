@@ -11,11 +11,7 @@ import { Router } from '@angular/router';
 })
 
 export class LoginComponent implements OnInit, OnDestroy {
-  /*
-  isAuth: boolean = false;
-  email: string = '';
-  password: string = '';
-  */
+  
 
   errorMessage!: string; // Variable to store error messages 
   AuthUserSub!: Subscription; // Subscription to the authenticated user observable 
