@@ -1,0 +1,33 @@
+<!-- Bouton d'ajout de produit -->
+<div class="mt-2 mb-4">
+    <button class="btn btn-success" (click)="onAddEstate()">
+      Add Estate
+    </button>
+  </div>
+  
+  <!-- Affichage pendant le chargement -->
+  <div *ngIf="isWaiting" class="text-center">
+    <div class="spinner-border" role="status"></div>
+    <h4>Loading... Please Wait</h4>
+  </div>
+  
+  <!-- Affichage une fois terminé le chargement -->
+  <div *ngIf="!isWaiting">
+    
+    <!-- S'il y a des produits -->
+    <div class="row" *ngIf="estates.length > 0; else noEstates">
+      <div class="col-md-3" *ngFor="let estate of estates">
+        <app-estate-details [estate]="estate" (estateDeleted)="onEstateDeleted($event)"></app-estate-details>     
+      </div>
+    </div>
+  
+    <!-- Template si pas de Estates -->
+    <ng-template #noEstates>
+      <p class="alert alert-warning mt-2">Sorry... No Estates available!</p>
+      <div *ngIf="errMess" class="alert alert-danger mt-2">
+        <strong>Error!</strong> {{ errMess }}.
+      </div>
+    </ng-template>
+  
+  </div>
+  

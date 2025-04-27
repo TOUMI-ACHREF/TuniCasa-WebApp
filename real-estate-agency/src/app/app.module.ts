@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -23,6 +22,11 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { FavoritesPageComponent } from './favorites-page/favorites-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminBoardComponent } from './admin-board/admin-board.component';
+import { EstateDetailsComponent } from './back-office/estate-details/estate-details.component';
+import { EstateEditComponent } from './back-office/estate-edit/estate-edit.component';
+import { Estates2Component } from './back-office/estates/estates.component';
+import { NotfoundComponent } from './notfound/notfound.component';
+
 
 @NgModule({
   declarations: [
@@ -43,8 +47,13 @@ import { AdminBoardComponent } from './admin-board/admin-board.component';
     FavoritesComponent,
     FavoritesPageComponent,
     AdminBoardComponent,
-  ],
+    EstateDetailsComponent,
+    EstateEditComponent,
+    Estates2Component,
+    NotfoundComponent,
+      ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
