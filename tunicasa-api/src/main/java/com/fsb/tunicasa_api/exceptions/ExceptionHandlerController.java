@@ -23,7 +23,7 @@ public class ExceptionHandlerController {
             WebRequest request) {
         final ErrorResponse errorResponse = ErrorResponse.builder()
                 .timestamp(Instant.now())
-                .error("Duplicate Contact")
+                .error("Duplicate user")
                 .status(HttpStatus.BAD_REQUEST.value())
                 .message(e.getMessage())
                 .path(request.getDescription(false))

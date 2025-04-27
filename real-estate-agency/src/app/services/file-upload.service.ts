@@ -15,9 +15,10 @@ export class FileUploadService {
     // Create a new FormData object to hold the file data 
     const formData: FormData = new FormData(); 
     formData.append('file', file);  // Append the file to the FormData object 
- 
+    console.log('Request URL:', `${this.baseUrl}/storage/upload/${id}`);
+    console.log('file:', formData);
     const req = new HttpRequest('PATCH', 
-      `${this.baseUrl}/storage/upload/${id}`, 
+      `${this.baseUrl}/storage/upload/user/${id}`, 
       formData, 
       { 
         reportProgress: true,  // Enable progress events for the request 
@@ -26,5 +27,5 @@ export class FileUploadService {
       }); 
  
     return this.http.request(req); 
-  } 
+  }
 }

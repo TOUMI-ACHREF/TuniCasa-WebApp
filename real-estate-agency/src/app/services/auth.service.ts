@@ -75,7 +75,7 @@ export class AuthService {
     if (!userData) {
       return;
     }
-    this.AuthenticatedUser$.next(userData); // Update BehaviorSubject with authenticated user
+    this.AuthenticatedUser$.next(userData);// Update BehaviorSubject with authenticated user
   }
   // Method to log out the current user 
   logout() {
