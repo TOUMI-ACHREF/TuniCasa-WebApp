@@ -1,0 +1,128 @@
+<div class="container mx-auto card border-primary mb-3">
+    <div class="card-header bg-primary text-white">Éditer l'Utilisateur</div>
+    <div class="card-body">
+      <h3 *ngIf="!user.id; else update">Ajouter un Utilisateur</h3>
+      <ng-template #update><h3>Modifier l'Utilisateur</h3></ng-template>
+  
+      <form (ngSubmit)="onSubmit()" #form="ngForm">
+        <div class="form-group">
+          <label for="firstname">Nom</label>
+          <input
+            type="text"
+            class="form-control"
+            name="firstname"
+            [ngClass]="{'is-invalid': firstname.invalid && firstname.dirty, 'is-valid': firstname.valid}"
+            required
+            #firstname="ngModel"
+            [(ngModel)]="user.firstname"
+          >
+          <div *ngIf="firstname.invalid && firstname.dirty" class="invalid-feedback">
+            Veuillez fournir un nom.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="lastname">Prénom</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastname"
+            [ngClass]="{'is-invalid': lastname.invalid && lastname.dirty, 'is-valid': lastname.valid}"
+            required
+            #lastname="ngModel"
+            [(ngModel)]="user.lastname"
+          >
+          <div *ngIf="lastname.invalid && lastname.dirty" class="invalid-feedback">
+            Veuillez fournir un prénom.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            [ngClass]="{'is-invalid': email.invalid && email.dirty, 'is-valid': email.valid}"
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            #email="ngModel"
+            [(ngModel)]="user.email"
+          >
+          <div *ngIf="email.invalid && email.dirty" class="invalid-feedback">
+            Veuillez fournir une adresse email valide.
+          </div>
+          <div *ngIf="errMail.length!=0" class="error">
+            Cet email est déjà utilisé.
+          </div>
+        </div>
+  
+        <div *ngIf="user.id==-1" class="form-group">
+          <label for="password">Mot de passe</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            [ngClass]="{'is-invalid': password.invalid && password.dirty, 'is-valid': password.valid}"
+            required
+            minlength="6"
+            #password="ngModel"
+            [(ngModel)]="_password"
+          >
+          <div *ngIf="password.invalid && password.dirty" class="invalid-feedback">
+            Le mot de passe doit contenir au moins 6 caractères.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="role">Rôle</label>
+          <select
+            class="form-control"
+            name="role"
+            [ngClass]="{'is-invalid': role.invalid && role.dirty, 'is-valid': role.valid}"
+            required
+            #role="ngModel"
+            [(ngModel)]="user.role"
+          >
+            <option value="ROLE_USER">Utilisateur</option>
+            <option value="ROLE_ADMIN">Administrateur</option>
+          </select>
+          <div *ngIf="role.invalid && role.dirty" class="invalid-feedback">
+            Veuillez sélectionner un rôle.
+          </div>
+        </div>
+  
+        <div *ngIf="user.id!=-1" class="form-group border-rounded">
+          <!-- Display the user's image if updating -->
+          <img
+            *ngIf="user.id"
+            [src]="
+                user.imageUrl
+                  ? 'http://localhost:8087/api/storage/files/' + user.imageUrl
+                  : '../../assets/user.png'
+              "
+            class="img-responsive img-rounded"
+            style="max-height: 50px; max-width: 50px;"
+            alt="photo"
+          >
+          <!-- File input for selecting a new image -->
+          <label class="btn btn-success p-0">
+            <input type="file" (change)="selectFile($event)" [disabled]="isDisabled" />
+          </label>
+          <!-- Display message -->
+          <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+        </div>
+  
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="form.invalid || isLoading"
+        >
+          <span *ngIf="isLoading" class="spinner-border" role="status"></span>
+          Enregistrer
+        </button>
+      </form>
+    </div>
+    
+  <button class=" btn btn-secondary mt-5" (click)="onUsers()">Retour aux Utilisateurs</button>
+  </div>

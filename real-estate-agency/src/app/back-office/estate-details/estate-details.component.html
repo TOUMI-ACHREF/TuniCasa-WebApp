@@ -1,0 +1,44 @@
+<div class="card mb-4 box-shadow" style="max-width: 250px;">
+  
+  <div class="estate-card" [routerLink]="'/estate/' + estate.id">
+
+    <div class="image-container">
+      <!-- <img [src]="estate.imageUrl" alt="Estate Image" class="estate-image" /> -->
+
+      <img [src]="estate.imageUrl!= null && estate.imageUrl!='' ?'http://localhost:8087/api/storage/files/'+estate.imageUrl : 'assets/noimage.jpg'"
+       alt="Estate Image" class="estate-image"/>
+      <!-- Status Badge -->
+      <div class="status-badge" [ngClass]="estate.status">
+        <span class="puce"></span>
+        {{ estate.status === 'FOR_SALE' ? 'Vente' : 'Location' }}
+      </div>
+    </div>
+
+    <div class="estate-content">
+      <h3 class="estate-title">{{ estate.name }}</h3>
+      <p class="estate-location">{{ estate.city }}</p>
+      <p class="estate-price">{{ estate.price }} TND</p>
+    </div>
+
+
+    <div class="card-footer">
+      <div class="row g-1">
+        <div class="col-4">
+          <a class="btn btn-warning w-150" [routerLink]="'/admin/estates/edit/' + estate.id">
+            Modifier
+          </a>
+        </div>
+        
+        <div class="col-4">
+          <button class="btn btn-danger w-150" (click)="deleteEstate(estate.id!)">
+            <span *ngIf="!isLoading">Supprimer</span>
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    
+  
+  </div>

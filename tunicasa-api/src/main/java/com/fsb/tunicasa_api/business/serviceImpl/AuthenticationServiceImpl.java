@@ -1,10 +1,12 @@
 package com.fsb.tunicasa_api.business.serviceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.fsb.tunicasa_api.business.services.AuthenticationService;
+import com.fsb.tunicasa_api.business.services.LogService;
 import com.fsb.tunicasa_api.dao.entities.User;
 import com.fsb.tunicasa_api.dao.repositories.UserRepository;
 import com.fsb.tunicasa_api.exceptions.DuplicateUserException;
@@ -16,6 +18,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
  
     // Repository to handle User entity persistence 
     private final UserRepository userRepository; 
+    @Autowired
+    private LogService logService;
  
     // Constructor injection for UserRepository 
     public AuthenticationServiceImpl(UserRepository userRepository) { 
@@ -29,7 +33,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         } 
         try { 
             // Save the user in the repository 
-            return userRepository.save(user); 
+            User registerUser = userRepository.save(user); 
+            //adding action to logs
+            logService.logEvent("Inscription", user.getEmail(), "nouveau Utilisateur a été inscri");
+
+            return registerUser; 
+
         } catch (DataIntegrityViolationException e) { 
             // Handle uniqueness constraint violations 
             throw new DuplicateUserException("User already exists"); 
@@ -41,6 +50,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         // Retrieve the user principal from the authentication object after basic authentication 
         User user = (User) authentication.getPrincipal(); 
         // Convert the User entity to AuthenticationUserDTO and return it 
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        logService.logEvent("Connexion", user.getEmail(), "Utilisateur a été connecter");
         return AuthenticationUserDTO.toAuthenticationUserDTO(user); 
     } 
 }

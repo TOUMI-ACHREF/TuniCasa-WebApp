@@ -1,0 +1,24 @@
+<app-nav-bar></app-nav-bar>
+<div class="container mt-4">
+    <h2 class="mb-3">Journale d' Activitées</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Evénement</th>
+            <th scope="col">Utilisateur</th>
+            <th scope="col">Temp</th>
+            <th scope="col">Détailles</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let log of logs">
+            <td>{{ log.eventType }}</td>
+            <td>{{ log.username }}</td>
+            <td>{{ log.timestamp | date:'short' }}</td>
+            <td>{{ log.details }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

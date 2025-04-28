@@ -19,8 +19,6 @@ import com.fsb.tunicasa_api.dao.entities.User;
 import com.fsb.tunicasa_api.web.dto.ProfileDTO;
 
 @RestController
-// @CrossOrigin(origins = "http://localhost:4200") //acces par l'application
-// Angular
 @RequestMapping("/api/profile")
 public class ProfileController {
     private final ProfileService profileService;

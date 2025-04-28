@@ -1,0 +1,57 @@
+<app-nav-bar></app-nav-bar>
+<button class="btn btn-primary ml-5 mb-3 mr-2" (click)="onAdduser()">
+    Ajouter un nouveau Utilisateur +
+</button>
+
+<div class="container mx-auto card mb-3">
+
+    <div class="card-header bg-secondary text-white">
+        Liste d'Utilisateurs
+    </div>
+
+    <div class="card-body">
+        <div *ngIf="users.length>0; else noUsers">
+            <table class="table table-hover">
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Role</th>
+
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let user of users">
+                    <td>{{user.id}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.role}}</td>
+                    <td> <a routerLink="/admin/users/{{user.id}}" class="btn btn-success">Détaille</a></td>
+                    <td> <a routerLink="/admin/users/edit/{{user.id}}" class="btn btn-warning">Modifier</a></td>
+                    <td> <button (click)="onDeleteUser(user.id)" class="btn btn-danger">Supprimer</button></td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div [hidden]="!isWaiting">
+            <div class="spinner-border" role="status">
+            </div>
+            <h4>En cour...!</h4>
+        </div>
+        
+        <ng-template #noUsers>
+            <p class="alert alert-warning">
+                Aucun utilisateur trouver!
+            </p>
+            <div *ngIf="errMsg" class="alert alert-danger">
+                <strong>Error!</strong> {{errMsg}}
+            </div>
+        </ng-template>
+        
+
+    </div>
+
+</div>
+
+
+<app-homefooter></app-homefooter>

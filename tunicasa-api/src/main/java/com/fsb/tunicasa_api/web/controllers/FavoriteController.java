@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fsb.tunicasa_api.business.services.FavoriteService;
-import com.fsb.tunicasa_api.dao.entities.Estate;
 import com.fsb.tunicasa_api.web.dto.EstateDTO;
 
 @RestController

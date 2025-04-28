@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fsb.tunicasa_api.business.services.FilesStorageService;
 import com.fsb.tunicasa_api.business.services.ProfileService;
-import com.fsb.tunicasa_api.dao.entities.Estate;
 import com.fsb.tunicasa_api.dao.entities.User;
-import com.fsb.tunicasa_api.dao.repositories.EstateRepository;
 import com.fsb.tunicasa_api.dao.repositories.UserRepository;
 import com.fsb.tunicasa_api.web.dto.ProfileDTO;
 

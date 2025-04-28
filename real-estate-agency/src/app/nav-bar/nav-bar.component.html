@@ -1,15 +1,42 @@
-
 <nav class="navbar">
     <div class="nav-left">
-        <a href="/home"><img src="assets/Tunicasa_logo.png" alt="Logo" class="logo"></a>
+      <a routerLink="/home">
+        <img src="assets/Tunicasa_logo.png" alt="Logo" class="logo">
+      </a>
     </div>
     <div class="nav-right">
-        <ul class="nav-menu">
-        <li><a href="/home" [class.selectedField]="selected === 'home'">Acceuil</a></li>
-        <li><a href="/estates" [class.selectedField]="selected === 'estates'">Nos Immobiliere</a></li>
-        <li><a href="/favorites" [class.selectedField]="selected === 'favorites'">Favorites</a></li>
-        <li><a (click)="scrollToSection()" [class.selectedField]="selected === 'contacts'">Contacts</a></li>
-        <li><a href="/account" [class.selectedField]="selected === 'account'">Account</a></li>
-        </ul>
+      <ul class="nav-menu">
+        <li>
+          <a routerLink="/home" routerLinkActive="selectedField" [routerLinkActiveOptions]="{ exact: true }">Acceuil</a>
+        </li>
+        <!-- Admin-specific links -->
+        <li *ngIf="isAdmin$ | async">
+          <a routerLink="/admin/estates" routerLinkActive="selectedField">Gérer les Immobiliérs</a>
+        </li>
+        <li *ngIf="isAdmin$ | async">
+            <a routerLink="/admin/users" routerLinkActive="selectedField">Gérer les utilisateurs</a>
+        </li>
+        <li *ngIf="isAdmin$ | async">
+          <a routerLink="/admin/logs" routerLinkActive="selectedField">Journale des connexions</a>
+        </li>
+        <!-- user-specific link -->
+        <li *ngIf="isUser$ | async">
+          <a routerLink="/estates" routerLinkActive="selectedField">Nos Immobiliere</a>
+        </li>
+        <!-- Commun-links --> 
+        <li>
+          <a routerLink="/favorites" routerLinkActive="selectedField">Favorites</a>
+        </li>
+        <li>
+          <a (click)="scrollToSection()" [class.selectedField]="selected === 'contacts'">Contacts</a>
+        </li>
+        <li>
+          <a routerLink="/account" routerLinkActive="selectedField">Account</a>
+        </li>
+        <!-- Logout link (visible when authenticated) -->
+        <li *ngIf="isAuthenticated$ | async">
+          <a (click)="logout()">Logout</a>
+        </li>
+      </ul>
     </div>
-</nav>
+  </nav>

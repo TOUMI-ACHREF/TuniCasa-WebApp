@@ -180,7 +180,7 @@ public class EstateServiceImpl implements EstateService {
         // is not found
         Estate Estate = getEstateById(id);
         // Check if the contact already has an image
-        if (Estate.getImageUrl() == null) {
+        if (Estate.getImageUrl() == null || Estate.getImageUrl().isEmpty()) {
             // If the contact does not have an image, set the new image
             Estate.setImageUrl(filename);
         } else {

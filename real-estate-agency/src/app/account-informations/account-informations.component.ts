@@ -5,6 +5,7 @@ import { User } from '../models/user.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FileUploadService } from '../services/file-upload.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-account-informations',
@@ -57,11 +58,27 @@ export class AccountInformationsComponent {
   }
 
   logout(): void {
+      Swal.fire({
+        title: 'Vous éte sur?',
+        text: 'Vous allez déconnecter.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Oui, Se déconnecte',
+        cancelButtonText: 'Annuler'
+      }).then(result => {
+        if (result.isConfirmed) {
+          this.authService.logout(); // Assuming AuthService has a logout method
+          this.user = { id: 0, phone: '', firstname: '', lastname: '', role: 'USER', email: '', imageUrl: '' };
+          Swal.fire('déconnection!', 'Vous éte déconnecter.', 'success');
+        }
+      });
+    }
+  /* logout(): void {
     this.authService.logout();
     this.user = { id: 0, phone: '', firstname: '', lastname: '', role: 'USER', email: '', imageUrl: '' };
     this.router.navigate(['/']);
     console.log('User disconnected');
-  }
+  } */
 
   onUpdate(): void {
     if (!this.user.id) {

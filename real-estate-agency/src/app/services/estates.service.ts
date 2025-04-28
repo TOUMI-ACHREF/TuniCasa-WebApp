@@ -1,5 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Estate } from '../models/estate.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +47,28 @@ export class EstateService {
     return this.http.get<any[]>(`${this.baseUrl}/estates/search`, {
       params:params,
       withCredentials: true
-    });  }
+    });  
+  }
+
+  //Méthode pour supprimer un estate de la liste des produits
+  deleteEsate(id: number): Observable<void> {return this.http.delete<void>(this.baseUrl +'/estates/'+ id, this.httpOptions);}
+
+  //Méthode pour ajouter un nouveu estate
+  addEstate(estate: Estate): Observable<Estate> {
+    // Création d'un estate avec l'ID converti en chaîne de caractères juste pour l'envoi
+    const estateToSend = { ...estate, id: estate.id! }; 
+    return this.http.post<Estate>(this.baseUrl+'/estates', estateToSend, this.httpOptions);
+  }
   
+  //Méthode pour mettre à jour un  estate
+  updateEstate(estate: Estate): Observable<Estate> {
+    return this.http.put<Estate>(this.baseUrl +'/estates/'+ estate.id, estate, this.httpOptions)
+  }
+
+  getLastEstate(): Observable<Estate> {
+    return this.getEstates().pipe(
+      map((estates: Estate[]) => estates[estates.length - 1]) // Retourne le dernier estate de la liste
+    );
+  }
+
 }

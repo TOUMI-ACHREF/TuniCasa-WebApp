@@ -1,0 +1,198 @@
+<div class="container mx-auto card border-primary mb-3 ">
+    <div class="card-header bg-primary text-white">
+      {{ !estate.id ? 'Ajouter un bien Immobilére' : 'Modifier un bien Immobilére' }}
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #form="ngForm">
+  
+        <!-- Name -->
+        <div class="form-group">
+          <label for="name">Titre</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            required
+            #nameModel="ngModel"
+            [(ngModel)]="estate.name"
+            [ngClass]="{'is-invalid': nameModel.invalid && nameModel.dirty, 'is-valid': nameModel.valid}">
+          <div *ngIf="nameModel.invalid && nameModel.dirty" class="invalid-feedback">
+            Please provide a name.
+          </div>
+        </div>
+  
+        <!-- Type -->
+        <div class="form-group">
+          <label for="type">Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="type"
+            required
+            #typeModel="ngModel"
+            [(ngModel)]="estate.type"
+            [ngClass]="{'is-invalid': typeModel.invalid && typeModel.dirty, 'is-valid': typeModel.valid}">
+          <div *ngIf="typeModel.invalid && typeModel.dirty" class="invalid-feedback">
+            Please provide a type.
+          </div>
+        </div>
+  
+        <!-- Status (Enum select) -->
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select
+            class="form-control"
+            name="status"
+            required
+            #statusModel="ngModel"
+            [(ngModel)]="estate.status">
+            <option *ngFor="let s of estateStatuses" [ngValue]="s">{{ s }}</option>
+          </select>
+        </div>
+  
+        <!-- Description -->
+        <div class="form-group">
+          <label for="description">Déscription</label>
+          <textarea
+            class="form-control"
+            name="description"
+            rows="3"
+            #descModel="ngModel"
+            [(ngModel)]="estate.description"></textarea>
+        </div>
+  
+        <!-- Price & Surface -->
+        <div class="form-row">
+          <div class="col">
+            <label for="price">Prix</label>
+            <input
+              type="number"
+              class="form-control"
+              name="price"
+              required
+              #priceModel="ngModel"
+              [(ngModel)]="estate.price"
+              min="0">
+          </div>
+          <div class="col">
+            <label for="surface">Surface (m²)</label>
+            <input
+              type="number"
+              class="form-control"
+              name="surface"
+              required
+              #surfModel="ngModel"
+              [(ngModel)]="estate.surface"
+              min="0">
+          </div>
+        </div>
+  
+        <!-- Location -->
+        <div class="form-row mt-3">
+          <div class="col">
+            <label for="city">Ville</label>
+            <input
+              type="text"
+              class="form-control"
+              name="city"
+              required
+              #cityModel="ngModel"
+              [(ngModel)]="estate.city">
+          </div>
+          <div class="col">
+            <label for="address">Adresse</label>
+            <input
+              type="text"
+              class="form-control"
+              name="address"
+              required
+              #addrModel="ngModel"
+              [(ngModel)]="estate.address">
+          </div>
+        </div>
+  
+        <!-- Rooms & Bathrooms -->
+        <div class="form-row mt-3">
+          <div class="col">
+            <label for="rooms">Chambres</label>
+            <input
+              type="number"
+              class="form-control"
+              name="rooms"
+              #roomsModel="ngModel"
+              [(ngModel)]="estate.rooms"
+              min="0">
+          </div>
+          <div class="col">
+            <label for="bathrooms">Toilettes</label>
+            <input
+              type="number"
+              class="form-control"
+              name="bathrooms"
+              #bathModel="ngModel"
+              [(ngModel)]="estate.bathrooms"
+              min="0">
+          </div>
+        </div>
+  
+        
+        <!-- Owner Info -->
+        <div class="form-row mt-3">
+          <div class="col">
+            <label for="ownerName">Nom Propriétaire</label>
+            <input
+              type="text"
+              class="form-control"
+              name="ownerName"
+              required
+              #ownerModel="ngModel"
+              [(ngModel)]="estate.ownerName">
+          </div>
+          <div class="col">
+            <label for="contactPhone">Téléphone</label>
+            <input
+              type="tel"
+              class="form-control"
+              name="contactPhone"
+              required
+              pattern="^[0-9\-\+]{9,15}$"
+              #phoneModel="ngModel"
+              [(ngModel)]="estate.contactPhone">
+          </div>
+        </div>
+  
+        <!-- Image Upload -->
+<div *ngIf="this.estate.id !=null" class="form-group mt-3">
+  <img
+    [src]="estate.imageUrl ? 'http://localhost:8087/api/storage/files/' + estate.imageUrl : 'assets/noimage.jpg'"
+    class="img-thumbnail mb-2"
+    style="max-height: 100px;"
+    alt="Estate image">
+  
+  <label class="btn btn-success p-0">
+    <input type="file" (change)="selectFile($event)" /> Coisir une Image
+  </label>
+
+  <div *ngIf="progress >= 0" class="progress my-2">
+    <div
+      class="progress-bar progress-bar-striped"
+      role="progressbar"
+      [style.width.%]="progress">
+      {{ progress }}%
+    </div>
+  </div>
+</div>
+
+  
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="btn btn-primary mt-3"
+          >
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
+          {{ estate.id ? 'Modifier' : 'Enregister' }}
+        </button>
+        <button class="btn btn-secondary ml-2 mt-3" (click)="onCancel()" type="button">Annuler</button>
+      </form>
+    </div>
+  </div>

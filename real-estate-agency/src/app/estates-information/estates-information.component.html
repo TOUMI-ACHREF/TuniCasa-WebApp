@@ -15,7 +15,8 @@
 
   <div class="row mt-4">
     <div class="col">
-      <img [src]="estate.imageUrl!= null?'http://localhost:8087/api/storage/files/'+estate.imageUrl:'../../assets/building.jpg'" alt="Estate image" class="img-fluid estate-image" />
+      <img [src]="estate.imageUrl!= null && estate.imageUrl!='' ?'http://localhost:8087/api/storage/files/'+estate.imageUrl : 'assets/noimage.jpg'"
+      alt="Estate image" class="img-fluid estate-image" />
 
     </div>
     <div class="estate-info col">
