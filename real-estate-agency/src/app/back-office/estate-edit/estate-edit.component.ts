@@ -100,7 +100,7 @@ export class EstateEditComponent implements OnInit{
               this.uploadImage(saved.id!);
               this.isLoading = false;
               this.progress=0;
-              this.router.navigate(['/home']);
+              this.router.navigate(['/admin/estates']);
               
             },
             error: err => {
@@ -151,7 +151,7 @@ export class EstateEditComponent implements OnInit{
 
   private finishAndNavigate(id: number): void {
     this.isLoading = false;
-    this.router.navigateByUrl(`/admin/estates/${id}`);  // ou liste: '/estates'
+    this.router.navigateByUrl('/admin/estates'); 
   }
 
   onCancel(): void {
