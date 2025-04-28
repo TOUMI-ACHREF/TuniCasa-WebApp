@@ -1,18 +1,19 @@
 <div class="card border-primary mb-3">
-
-    <div class="card-header bg-primary text-white">
-        User Detail Component
-    </div>
     
-    <div class="card-body">
+    <div class="container mx-auto card-body">
         <div *ngIf="user; else noUser">
           <h3>User detail</h3>
           <div class="card" style="width:25em">
-             <img src="../../../assets/user.png" class="card-img-top" alt="...">
+             <img [src]="
+             user.imageUrl
+               ? 'http://localhost:8087/api/storage/files/' + user.imageUrl
+               : '../../assets/user.png'
+           " class="card-img-top" alt="...">
              <div class="card-body">
-                <h3 class="card-title"><!----></h3>
+                <h3 class="card-title">Utilisateur avec ID-{{user.id}}</h3>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><strong>Last Name: </strong><!----></li>
+                    <li class="list-group-item"><strong>Prénom: </strong>{{user.lastname}}</li>
+                    <li class="list-group-item"><strong>Nom: </strong>{{user.lastname}}</li>
                     <li class="list-group-item"><strong>Email: </strong>{{user.email}}</li>
                     <li class="list-group-item"><strong>Role : </strong>{{user.role}}</li>
                     <li class="list-group-item"><strong>Password : </strong>***********</li>

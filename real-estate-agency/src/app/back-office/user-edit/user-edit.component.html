@@ -57,7 +57,7 @@
           </div>
         </div>
   
-        <div *ngIf="user.id==-1" class="form-group">
+        <div *ngIf="user.id==-1" class="form-group"><!-- -->
           <label for="password">Mot de passe</label>
           <input
             type="password"
@@ -84,34 +84,15 @@
             #role="ngModel"
             [(ngModel)]="user.role"
           >
-            <option value="ROLE_USER">Utilisateur</option>
-            <option value="ROLE_ADMIN">Administrateur</option>
+            <option value="USER">Utilisateur</option>
+            <option value="ADMIN">Administrateur</option>
           </select>
           <div *ngIf="role.invalid && role.dirty" class="invalid-feedback">
             Veuillez sélectionner un rôle.
           </div>
         </div>
-  
-        <div *ngIf="user.id!=-1" class="form-group border-rounded">
-          <!-- Display the user's image if updating -->
-          <img
-            *ngIf="user.id"
-            [src]="
-                user.imageUrl
-                  ? 'http://localhost:8087/api/storage/files/' + user.imageUrl
-                  : '../../assets/user.png'
-              "
-            class="img-responsive img-rounded"
-            style="max-height: 50px; max-width: 50px;"
-            alt="photo"
-          >
-          <!-- File input for selecting a new image -->
-          <label class="btn btn-success p-0">
-            <input type="file" (change)="selectFile($event)" [disabled]="isDisabled" />
-          </label>
-          <!-- Display message -->
-          <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
-        </div>
+        
+        
   
         <button
           type="submit"

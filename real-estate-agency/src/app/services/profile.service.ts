@@ -7,6 +7,7 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class ProfileService {
+  
  //the correct format of the request to access the api
   httpOptions={ 
     headers:new HttpHeaders({'Content-Type':'application/json'}), 
@@ -21,6 +22,9 @@ export class ProfileService {
     const userId = userString ? JSON.parse(userString).id : null;
     console.log("User-ID: ",userId);
     return this.http.get<any>(this.baseUrl + '/profile/'+ userId, {withCredentials:true});  
+  }
+  getProfileById(idUser: number) {
+    return this.http.get<any>(this.baseUrl + '/profile/'+ idUser, {withCredentials:true});
   }
   
   updateProfile(profile: User): Observable<User> {

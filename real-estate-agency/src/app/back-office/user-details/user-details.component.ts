@@ -1,8 +1,9 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/Shared/User';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/models/user.model';
+import { ProfileService } from 'src/app/services/profile.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy{
   user: User | undefined;
   private routeSub!: Subscription;
 
-  constructor(private userService: UserService,
+  constructor(private profileService: ProfileService,
               private route: ActivatedRoute,
               private router:Router,
               @Inject('BaseURL') public baseUrl: string){}
@@ -27,8 +28,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy{
         const id = params.get('id');
         if (id) { // Check if 'id' is not null
           this.idUser = +id; // Convert 'id' from string to number
-          //this.contact = this.contactService.getContactbyId(this.idContact);
-          this.userService.getUserById(this.idUser).subscribe({ next: (user) => this.user = user });
+          this.profileService.getProfileById(this.idUser).subscribe({ next: (user) => this.user = user });
         }
       });
   }

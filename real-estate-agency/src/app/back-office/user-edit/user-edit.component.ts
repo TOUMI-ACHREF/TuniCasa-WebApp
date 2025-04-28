@@ -14,7 +14,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class UserEditComponent  implements OnInit{
 
-  user!: User;
+  user: User={
+    id:-1,
+    email:"",
+    firstname:"",
+    imageUrl:"",
+    lastname:"",
+    phone:"",
+    role:'ADMIN'
+  };
   registerUser: RegisterUser={
     firstname: '',
     lastname: '',
@@ -69,12 +77,7 @@ export class UserEditComponent  implements OnInit{
     // Simuler un délai supplémentaire avant d'envoyer les données
     setTimeout(() => {
       // Ajoutez ici votre logique de soumission
-      if (this.user.id == null) {
-        // Si c'est un nouvel ajout, obtenir le dernier contact pour calculer l'ID
-        this.userService.getLastUser().subscribe((lastuser) => {
-          const lastuserId = lastuser ? +lastuser.id : 0;  // Convertir l'ID en nombre avec '+'
-          this.user.id = (lastuserId + 1);  // Générer un ID incrémenté
-      
+      if (this.user.id == -1) {
           //creation d'un registerUser
           this.registerUser = {
             firstname: this.user.firstname,
@@ -96,7 +99,7 @@ export class UserEditComponent  implements OnInit{
               this.errMail = err.message;
               this.isLoading = false; // Désactiver le spinner en cas d'erreur
             }
-          });
+          
         });
       } else {
         this.userService.updateUser(this.user)
