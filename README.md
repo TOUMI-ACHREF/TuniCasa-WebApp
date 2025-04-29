@@ -1,45 +1,43 @@
-# TuniCasa - Real Estate Agency Project
+# 🏠 TUNICASA - Tunisian Real Estate Agency
 
-TuniCasa is a comprehensive real estate management system designed for real estate agencies to manage property listings, transactions, client information, and more. This project provides a full-stack solution with a frontend built in Angular and a backend powered by Spring Boot. The system allows users to browse available properties, get property details, and interact with the real estate listings in an efficient way.
+**TUNICASA** is a full-stack web application designed for a real estate agency in Tunisia. It is built using **Angular** with **Bootstrap** and **SweetAlert2** for the frontend, and **Spring Boot** with **Spring Security (Basic Authentication)** for the backend.
 
----
-
-## Features
-
-- **Property Listings**: View and manage property listings with all necessary details.
-- **Search and Filter**: Filter properties by price, location, type, and other parameters.
-- **User Authentication**: Secure user login and registration.
-- **Property Details**: Detailed property information, including images, descriptions, and features.
-- **Admin Panel**: Admin features to add, edit, and remove listings.
-- **Real-Time Updates**: Get real-time updates on property availability.
-- **Responsive Design**: Mobile-friendly, responsive web application.
-
----
-
-## Technologies Used
+## 🚀 Technologies Used
 
 ### Frontend
-- **Angular**: Framework for building dynamic single-page applications.
-- **HTML, CSS, JavaScript**: Standard web technologies for layout and styling.
-- **Bootstrap**: For responsive design.
+- Angular
+- Bootstrap
+- SweetAlert2
 
 ### Backend
-- **Spring Boot**: A Java-based framework for building the backend services.
-- **Java**: Programming language for backend development.
-- **REST API**: Communication between the frontend and backend using RESTful web services.
+- Spring Boot
+- Spring Security (Basic Auth)
 
-### Database
-- **MySQL**: Relational database for storing property data, user information, etc.
+### DataBase
+- MySql
 
----
+## 👥 User Roles
 
-## Installation
+### 👤 User
+- View real estate listings (estates)
+- Search and filter properties
+- Manage their own account
+  - Update profile
+  - Upload profile image
 
-### Prerequisites
-Make sure you have the following installed:
+### 👨‍💼 Admin
+Includes all **User** functionalities, plus:
+- Add, edit, and delete real estate listings
+- Manage users (create, update, delete)
+- View login journal (connection logs)
 
-- **Node.js** (for running the Angular frontend)
-- **Angular CLI** (for building the frontend)
-- **Java** (for the Spring Boot backend)
-- **Maven** (for building and running the backend)
-- **MySQL** (for the database)
+## ✨ Features
+
+- 🏡 Real-time property display and updates
+- 🔎 Advanced filtering and search
+- 👤 Secure login with role-based access
+- 📸 Profile image upload
+- 📋 Admin dashboard for managing listings and users
+- 🛡️ Spring Security-based Basic Authentication
+- 📈 Admin journal of user login history
+
